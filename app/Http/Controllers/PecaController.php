@@ -83,4 +83,20 @@ class PecaController extends Controller
         return redirect('/pecas')->with('success', 'Excluído com sucesso');
 
     }
+
+    public function getPeca($id)
+    {
+
+        $data = json_decode(file_get_contents("https://rebrickable.com/api/v3/lego/parts/".$id."/?key=".env("API_KEY")));
+
+
+
+        $peca = new Peca();
+        $peca->id = $data->part_num;
+        $peca->nome = $data->name;
+        $peca->url_imagem = $data->part_img_url;
+
+        return view('pecas.teste')->with('peca', $peca);
+
+    }
 }

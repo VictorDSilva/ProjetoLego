@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::resource('kits', 'KitController');
 Route::resource('pecas', 'PecaController');
+Route::get('/peca/api/{id}', 'PecaController@getPeca');

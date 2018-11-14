@@ -52,7 +52,8 @@ class KitController extends Controller
 
     public function edit($id)
     {
-        //TODO
+        $kit =  Kit::Find($id);
+        return view('kits.edit')->with('kit', $kit);
     }
 
 
@@ -80,6 +81,8 @@ class KitController extends Controller
 
     public function destroy($id)
     {
-        //
+        $kit = Kit::find($id);
+        $kit->delete();
+        return redirect('/kits')->with('success', 'Excluído com sucesso');
     }
 }

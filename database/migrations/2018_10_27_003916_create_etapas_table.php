@@ -20,7 +20,6 @@ class CreateEtapasTable extends Migration
             $table->string('audioPath');
             $table->unsignedInteger('peca_etapa');
             $table->foreign('peca_etapa')->references('id')->on('pecas')->onDelete(cascade);
-            $table->integer('numero');
             $table->boolean('concluido');
 
             $table->timestamps();

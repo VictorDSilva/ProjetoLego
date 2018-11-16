@@ -1,52 +1,74 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Etapa;
 
 class EtapasController extends Controller
 {
     public function index(){
-        $exercicios = Product::all();
-        return view('exercicios/index')->with('exercicios', $exercicios);
+        $etapas = Etapa::all();
+        return view('etapas.index/index')->with('etapas', $etapas);
     }
 
     public function create(){
 
-        return view('exercicios.create');
+        return view('etapas.create');
     }
 
     public function show(){
         //
     }
 
+    public function edit($id){
+
+        $etapa = Etapa::findOrFail($id);
+        return view('etapas.edit/index')->with('etapa', $etapa);
+    }
+
     public function update(Request $request, $id){
 
-        $exercicios = exercicios::findOrFail($id);
-        $exercicios->descricao = $request->input('descricao');
+        $this->validate($request, [
+            'descricao' => 'required',
+            'audioPath' => 'required'
+        ]);
 
-        $exercicios->save();
+        $etapa = Etapa::findOrFail($id);
+        $etapa->descricao = $request->input('descricao');
+        $etapa->audioPath = $request->input('audioPath');
+        $etapa->peca_etapa= $request->input('peca_etapa');
+        $etapa->concluido = $request->input('concluido');
 
-        return redirect('/exercicios')->with('message', 'Alterado com sucesso');
+
+        $etapa->save();
+
+        return redirect('/etapas')->with('message', 'Alterado com sucesso');
     }
 
     public function store(Resquest $request){
 
-        $exercicio = new Exercicio;
+        $this->validate($request, [
+            'descricao' => 'required',
+            'audioPath' => 'required'
+        ]);
 
-        $exercicio->descricao  = $request->descricao;
+        $etapa = new Etapa;
+        $etapa->descricao  = $request->input('descricao');
+        $etapa->audioPath  = $request->input('audioPath');
+        $etapa->peca_etapa  = $request->input('peca_etapa');
+        $etapa->concluido  = $request->input('concluido');
 
-        $exercicio->save();
+        $etapa->save();
 
-        return redirect()->route('exercicio/index')->with('message', 'Criado com Sucesso!');
+        return redirect()->route('etapa/index')->with('message', 'Criado com Sucesso!');
     }
 
-    public function destroy(Request $request, $id){
+    public function destroy($id){
 
-        $exercicios = exercicios::findOrFail($id);
-
-        $exercicios->delete();
-
+        $etapa = Etapa::findOrFail($id);
+        $etapa->delete();
         return redirect()->route('exercicios/index')->with('//','Apagado com sucesso!');
     }
 }

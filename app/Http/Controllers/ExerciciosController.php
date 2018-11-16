@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Exercicio;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Exercicio;
 
 class ExerciciosController extends Controller
 {
     public function index(){
-        $exercicios = Product::all();
-        return view('exercicios.index')->with('exercicios', $exercicios);
+        $exercicios = Exercicio::all();
+        return view('exercicios.index/index')->with('exercicios', $exercicios);
     }
 
     public function create(){
@@ -21,7 +22,17 @@ class ExerciciosController extends Controller
         //
     }
 
+    public function edit($id){
+
+        $exercicio = Exercicio::findOrFail($id);
+        return view('exercicios.edit/index')->with('exercicio', $exercicio);
+    }
+
     public function update(Request $request, $id){
+
+        $this->validate($request, [
+            'descricao' => 'required',
+        ]);
 
         $exercicios = exercicios::findOrFail($id);
         $exercicios->descricao = $request->input('descricao');
@@ -35,23 +46,25 @@ class ExerciciosController extends Controller
 
     public function store(Resquest $request){
 
-        $exercicio = new Exercicio;
+        $this->validate($request, [
+            'descricao' => 'required',
+        ]);
 
-        $exercicio->descricao  = $request->descricao;
-        $exercicio->etapa_exercicio  = $request->etapa_exercicio;
-        $exercicio->kit_exercicio = $request->kit_exercicio;
+        $exercicio = new Exercicio;
+        $exercicio->descricao  = $request->input('descricao');
+        $exercicio->etapa_exercicio  = $request->input('etapa_exercicio');
+        $exercicio->kit_exercicio = $request->input('kit_exercicio');
 
         $exercicio->save();
 
-        return redirect()->route('exercicios.index')->with('message', 'Criado com Sucesso!');
+        return redirect()->route('exercicios/index')->with('message', 'Criado com Sucesso!');
     }
 
-    public function destroy(Request $request, $id){
+    public function destroy($id){
+
         $exercicios = exercicios::findOrFail($id);
-
         $exercicios->delete();
-
-        return redirect()->route('exercicios.index')->with('//','Apagado com sucesso!');
+        return redirect()->route('exercicios/index')->with('//','Apagado com sucesso!');
     }
 
 }

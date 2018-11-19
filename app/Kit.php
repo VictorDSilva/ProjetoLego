@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Kit extends Model
 {
-    // TODO relação
+    public function pecas() {
+        return $this->belongsToMany('App\Peca', 'kit_peca');
+    }
 }

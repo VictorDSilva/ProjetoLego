@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\ImageRepository;
 use App\Peca;
 
 
@@ -23,17 +24,21 @@ class PecaController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, ImageRepository $repo)
     {
         $this->validate($request, [
             'nome' => 'required',
             'url_imagem' => 'required'
         ]);
 
+        $peca = Peca::create($request->except('url_imagem'));
+        //$peca = new Peca();
+        //$peca->nome = $request->input('nome');
+        //$peca->url_imagem = $request->input('url_imagem');
 
-        $peca = new Peca();
-        $peca->nome = $request->input('nome');
-        $peca->url_imagem = $request->input('url_imagem');
+        if ($request->hasFile('url_imagem')) {
+            $peca->url_imagem = $repo->saveImage($request->url_imagem, $peca->id, 'pecas', 250);
+        }
 
 
         $peca->save();
@@ -56,18 +61,21 @@ class PecaController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, ImageRepository $repo)
     {
         $this->validate($request, [
             'nome' => 'required',
-            'url_imagem' => 'required'
+            //'url_imagem' => 'required'
         ]);
 
 
 
         $peca = Peca::find($id);
         $peca->nome = $request->input('nome');
-        $peca->url_imagem = $request->input('url_imagem');
+        //$peca->url_imagem = $request->input('url_imagem');
+        if ($request->hasFile('url_imagem')) {
+            $peca->url_imagem = $repo->saveImage($request->url_imagem, $id, 'pecas', 250);
+        }
 
 
         $peca->save();
@@ -84,9 +92,9 @@ class PecaController extends Controller
 
     }
 
-    public function getPeca($id)
+    public function showPeca(Request $request)
     {
-
+        $id = $request->input('id');
         $data = json_decode(file_get_contents("https://rebrickable.com/api/v3/lego/parts/".$id."/?key=".env("API_KEY")));
 
 
@@ -96,7 +104,37 @@ class PecaController extends Controller
         $peca->nome = $data->name;
         $peca->url_imagem = $data->part_img_url;
 
-        return view('pecas.teste')->with('peca', $peca);
+        return view('pecas.apicreate')->with('peca', $peca);
 
+    }
+
+    public function getPeca()
+    {
+
+
+
+        return view('pecas.teste');
+
+    }
+
+    public function storeAPI(Request $request,$id, ImageRepository $repo)
+    {
+
+
+        $data = json_decode(file_get_contents("https://rebrickable.com/api/v3/lego/parts/".$id."/?key=".env("API_KEY")));
+        //$peca = Peca::create($request->except('url_imagem'));
+        $peca = new Peca();
+        $peca->id = $data->part_num;
+        $peca->nome = $data->name;
+        $peca->url_imagem = $data->part_img_url;
+
+        //if ($request->hasFile('url_imagem')) {
+        //    $peca->url_imagem = $repo->saveImage($request->url_imagem, $peca->id, 'pecas', 250);
+        //}
+
+
+        $peca->save();
+
+        return redirect('/pecas')->with('success', 'Criado com sucesso');
     }
 }

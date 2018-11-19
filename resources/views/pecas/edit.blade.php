@@ -12,8 +12,12 @@
                 {{Form::text('nome', $peca->nome, ['class' => 'form-control'])}}
             </div>
             <div class="form-group">
-                {{Form::label('URL Imagem', 'URL Imagem')}}
-                {{Form::text('url_imagem', $peca->url_imagem, ['class' => 'form-control'])}}
+                <label for="url_imagem">Imagem:</label>
+                {{Form::file('url_imagem',['onchange'=>"document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])"])}}
+            </div>
+            <div class="form-group col-md-6">
+
+                <img id="preview" alt="" src={{$peca->url_imagem}} width="100" height="100" class="rounded" />
             </div>
             {{ Form::hidden('_method', 'PUT') }}
             <div class="form-group">

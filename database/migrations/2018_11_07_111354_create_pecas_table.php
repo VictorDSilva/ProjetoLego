@@ -16,7 +16,7 @@ class CreatePecasTable extends Migration
         Schema::create('pecas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('url_imagem');
+            $table->string('url_imagem')->default('null.jpg');;
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@
     <main role="main" class="container">
         <div class="jumbotron">
             <h1>Editar Peça</h1>
-            {!! Form::open(['action' => ['PecaController@update',$peca->id], 'method' => 'POST']) !!}
+            {!! Form::open(['action' => ['PecaController@update',$peca->id], 'method' => 'POST', 'enctype' =>'multipart/form-data']) !!}
             <div class="form-group">
                 {{Form::label('Nome', 'Nome da peca')}}
                 {{Form::text('nome', $peca->nome, ['class' => 'form-control'])}}

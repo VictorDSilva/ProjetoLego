@@ -16,7 +16,7 @@ class CreateKitsTable extends Migration
         Schema::create('kits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('url_imagem');
+            $table->string('url_imagem')->default('null.jpg');
             $table->integer('ano');
             $table->integer('quantidade_pecas');
 

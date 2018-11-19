@@ -6,7 +6,7 @@
     <main role="main" class="container">
         <div class="jumbotron">
             <h1>Editar Peça</h1>
-            {!! Form::open(['action' => ['KitController@update',$kit->id], 'method' => 'POST']) !!}
+            {!! Form::open(['action' => ['KitController@update',$kit->id], 'method' => 'POST', 'enctype' =>'multipart/form-data']) !!}
             <div class="form-group">
                 {{Form::label('Nome', 'Nome da kit')}}
                 {{Form::text('nome', $kit->nome, ['class' => 'form-control'])}}
@@ -20,8 +20,12 @@
                 {{Form::text('quantidade_pecas', $kit->quantidade_pecas, ['class' => 'form-control'])}}
             </div>
             <div class="form-group">
-                {{Form::label('URL Imagem', 'URL Imagem')}}
-                {{Form::text('url_imagem', $kit->url_imagem, ['class' => 'form-control'])}}
+                <label for="url_imagem">Imagem:</label>
+                {{Form::file('url_imagem',['onchange'=>"document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])"])}}
+            </div>
+            <div class="form-group col-md-6">
+
+                <img id="preview" alt="" src={{$kit->url_imagem}} width="100" height="100" class="rounded" />
             </div>
             {{ Form::hidden('_method', 'PUT') }}
             <div class="form-group">

@@ -5,7 +5,7 @@
 
         <div class="jumbotron">
             <h1>Criar Peça</h1>
-            <a class="btn btn-primary btn-success float-right"  href="{{ action('PecaController@getPeca') }}">Incluir da API</a>
+
             {!! Form::open(['action' => 'PecaController@store', 'method' => 'POST', 'enctype' =>'multipart/form-data']) !!}
             <div class="form-group col-md-6">
             {{Form::label('Nome', 'Nome da peca')}}
@@ -19,7 +19,14 @@
 
                 <img id="preview" alt="" width="100" height="100" class="rounded" />
             </div>
+            <div class="form-group col-md-6">
+                {{Form::label('Kit', 'Nome do kit')}}
+
+                {{--//----------------------------------------------------------}}
+                </div>
+
             <div class="form-group">
+                <a class="btn btn-primary btn-success"  href="{{ action('PecaController@getPeca') }}">Incluir da API</a>
             {{Form::submit('Criar', ['class'=> 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}

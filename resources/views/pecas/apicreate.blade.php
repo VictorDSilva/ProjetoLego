@@ -6,8 +6,12 @@
     <main role="main" class="container">
         <div class="jumbotron">
             <h1>Salvar Peça</h1>
-            {!! Form::open(['action' => ['PecaController@storeAPI', $peca->id], 'method' => 'POST', 'enctype' =>'multipart/form-data']) !!}
-            <div class="form-group">
+            {!! Form::open(['action' => ['PecaController@storeAPI', $peca->id], 'method' => 'POST']) !!}
+            <div class="form-group col-md-6">
+                {{Form::label('Identificador', 'Identificador da peca')}}
+                {{Form::text('id', $peca->id, ['class' => 'form-control'])}}
+            </div>
+            <div class="form-group col-md-6">
                 {{Form::label('Nome', 'Nome da peca')}}
                 {{Form::text('nome', $peca->nome, ['class' => 'form-control'])}}
             </div>
@@ -18,6 +22,7 @@
             <div class="form-group col-md-6">
 
                 <img id="preview" name="url_imagem" alt="" src={{$peca->url_imagem}} width="100" height="100" />
+                {{Form::text('url_imagem', $peca->url_imagem, ['class' => 'form-control ' ,'readonly'])}}
             </div>
 
             <div class="form-group">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ImageRepository;
 use App\Peca;
+use App\Kit;
 
 
 class PecaController extends Controller
@@ -20,7 +21,9 @@ class PecaController extends Controller
 
     public function create()
     {
-        return view('pecas.create');
+
+
+        return view('pecas.create')->with('kits',$kits);
     }
 
 
@@ -74,7 +77,7 @@ class PecaController extends Controller
         $peca->nome = $request->input('nome');
         //$peca->url_imagem = $request->input('url_imagem');
         if ($request->hasFile('url_imagem')) {
-            $peca->url_imagem = $repo->saveImage($request->url_imagem, $id, 'pecas', 250);
+            $peca->url_imagem = $repo->saveImage($request->url_imagem, $peca->id, 'pecas', 250);
         }
 
 
@@ -113,25 +116,28 @@ class PecaController extends Controller
 
 
 
-        return view('pecas.teste');
+        return view('pecas.apiget');
 
     }
 
-    public function storeAPI(Request $request,$id, ImageRepository $repo)
+    public function storeAPI(Request $request)
     {
 
 
-        $data = json_decode(file_get_contents("https://rebrickable.com/api/v3/lego/parts/".$id."/?key=".env("API_KEY")));
+       // $data = json_decode(file_get_contents("https://rebrickable.com/api/v3/lego/parts/".$id."/?key=".env("API_KEY")));
         //$peca = Peca::create($request->except('url_imagem'));
-        $peca = new Peca();
-        $peca->id = $data->part_num;
-        $peca->nome = $data->name;
-        $peca->url_imagem = $data->part_img_url;
+        //$peca = new Peca();
+        //$peca->id = $data->part_num;
+        //$peca->nome = $data->name;
+       // $peca->url_imagem = $data->part_img_url;
 
         //if ($request->hasFile('url_imagem')) {
         //    $peca->url_imagem = $repo->saveImage($request->url_imagem, $peca->id, 'pecas', 250);
         //}
-
+        $peca = new Peca();
+        $peca->nome = $request->input('nome');
+        $peca->id = $request->input('id');
+        $peca->url_imagem = $request->input('url_imagem');
 
         $peca->save();
 

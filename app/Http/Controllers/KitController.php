@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\ImageRepository;
 use App\Kit;
 
 class KitController extends Controller
@@ -23,20 +24,24 @@ class KitController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, ImageRepository $repo)
     {
         $this->validate($request, [
             'nome' => 'required',
-            'url_imagem' => 'required'
+            //'url_imagem' => 'required'
         ]);
 
 
-        $kit = new Kit();
-        $kit->nome = $request->input('nome');
-        $kit->ano = $request->input('ano');
-        $kit->quantidade_pecas = $request->input('quantidade_pecas');
-        $kit->url_imagem = $request->input('url_imagem');
+//        $kit = new Kit();
+//        $kit->nome = $request->input('nome');
+//        $kit->ano = $request->input('ano');
+//        $kit->quantidade_pecas = $request->input('quantidade_pecas');
+//        $kit->url_imagem = $request->input('url_imagem');
 
+        $kit = Kit::create($request->except('url_imagem'));
+        if ($request->hasFile('url_imagem')) {
+            $kit->url_imagem = $repo->saveImage($request->url_imagem, $kit->id, 'kits', 250);
+        }
 
         $kit->save();
 
@@ -57,7 +62,7 @@ class KitController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id,ImageRepository $repo)
     {
         $this->validate($request, [
             'nome' => 'required',
@@ -70,7 +75,10 @@ class KitController extends Controller
         $kit->nome = $request->input('nome');
         $kit->ano = $request->input('ano');
         $kit->quantidade_pecas = $request->input('quantidade_pecas');
-        $kit->url_imagem = $request->input('url_imagem');
+        //$kit->url_imagem = $request->input('url_imagem');
+        if ($request->hasFile('url_imagem')) {
+            $kit->url_imagem = $repo->saveImage($request->url_imagem, $kit->id, 'kits', 250);
+        }
 
 
         $kit->save();

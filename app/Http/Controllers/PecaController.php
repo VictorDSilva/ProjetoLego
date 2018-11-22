@@ -22,8 +22,8 @@ class PecaController extends Controller
     public function create()
     {
 
-
-        return view('pecas.create')->with('kits',$kits);
+        //$kits = Kits::all(); ->with('kits',$kits)
+        return view('pecas.create');
     }
 
 

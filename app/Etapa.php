@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Etapa extends Model
 {
     protected $table = 'etapas';
-    protected $fillable = ['id', 'descricao', 'audioPath', 'peca_id', 'numero', 'concluido'];
+    protected $fillable = ['id', 'descricao', 'audio_path', 'peca_id', 'numero', 'concluido'];
     protected $guarded = ['id', 'peca_id'];
 
     //Relacionamento 1 para N
     public function exercicios()
     {
-        return $this->hasMany(Exercicio::class, 'etapa_id');
+        return $this->hasMany('App\Exercicio', 'peca_id');
     }
 }

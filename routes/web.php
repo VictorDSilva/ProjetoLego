@@ -13,6 +13,6 @@
 
 Route::get('/', function () {
     return view('welcome');
-    Route::resource('etapa','EtapasController');
-    Route::resource('exercicio','ExerciciosController');
 });
+Route::resource('etapa','EtapasController');
+Route::resource('exercicio','ExerciciosController');

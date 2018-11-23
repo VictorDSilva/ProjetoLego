@@ -10,7 +10,7 @@ class EtapasController extends Controller
 {
     public function index(){
         $etapas = Etapa::all();
-        return view('etapas.index/index')->with('etapas', $etapas);
+        return view('etapas.index')->with('etapas', $etapas);
     }
 
     public function create(){
@@ -56,13 +56,13 @@ class EtapasController extends Controller
 
         $etapa = new Etapa;
         $etapa->descricao  = $request->input('descricao');
-        $etapa->audioPath  = $request->input('audioPath');
+        $etapa->audioPath  = $request->input('audio_path');
         $etapa->peca_etapa  = $request->input('peca_etapa');
         $etapa->concluido  = $request->input('concluido');
 
         $etapa->save();
 
-        return redirect()->route('etapa/index')->with('message', 'Criado com Sucesso!');
+        return redirect()->route('etapa.index')->with('message', 'Criado com Sucesso!');
     }
 
     public function destroy($id){

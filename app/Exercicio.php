@@ -8,5 +8,11 @@ class Exercicio extends Model
 {
     protected $table = 'exercicios';
     protected $fillable = ['id', 'descricao'];
-    protected $guarded = ['id', 'etapa_exercicio', 'kit_exercicio'];
+    protected $guarded = ['id', 'etapa_id', 'kit_id'];
+
+    public function etapas()
+    {
+        return $this->hasMany('App\Etapa', 'etapa_id');
+    }
+
 }

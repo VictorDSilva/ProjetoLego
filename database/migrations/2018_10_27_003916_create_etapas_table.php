@@ -18,8 +18,8 @@ class CreateEtapasTable extends Migration
             $table->increments('id');
             $table->string('descricao');
             $table->string('audioPath');
-            $table->unsignedInteger('peca_etapa');
-            $table->foreign('peca_etapa')->references('id')->on('pecas')->onDelete(cascade);
+            $table->unsignedInteger('peca_id');
+            // $table->foreign('peca_id')->references('id')->on('pecas');
             $table->boolean('concluido');
 
             $table->timestamps();
@@ -34,5 +34,6 @@ class CreateEtapasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('etapas');
+        Schema::enableForeignKeyConstraints();
     }
 }

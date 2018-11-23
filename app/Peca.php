@@ -10,4 +10,8 @@ class Peca extends Model
     public function kits() {
         return $this->belongsToMany('App\Kit', 'kit_peca');
     }
+
+    public function etapas() {
+        return $this->belongsToMany('App\Etapa', 'etapa_peca');
+    }
 }

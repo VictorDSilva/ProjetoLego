@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{ Form::open(['action' => 'EtapasController@store', 'method' => 'POST'])}}
+    {!! Form::open(['action' => 'EtapasController@store', 'method' => 'POST']) !!}
 
     <div class="form-group">
         {{ Form::label('descricao', 'Descricao') }}
@@ -21,5 +21,5 @@
 
     {{ Form::submit('Criar etapa!', ['class' => 'btn btn-primary']) }}
 
-    {{Form::close() }}
+    {!! Form::close()  !!}
 @endsection

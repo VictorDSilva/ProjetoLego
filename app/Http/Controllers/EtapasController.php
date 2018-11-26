@@ -25,7 +25,7 @@ class EtapasController extends Controller
     public function edit($id){
 
         $etapa = Etapa::findOrFail($id);
-        return view('etapas.edit/index')->with('etapa', $etapa);
+        return view('etapas.edit')->with('etapa', $etapa);
     }
 
     public function update(Request $request, $id){
@@ -37,7 +37,7 @@ class EtapasController extends Controller
 
         $etapa = Etapa::findOrFail($id);
         $etapa->descricao = $request->input('descricao');
-        $etapa->audioPath = $request->input('audioPath');
+        $etapa->audioPath = $request->input('audio_path');
         $etapa->peca_etapa= $request->input('peca_etapa');
         $etapa->concluido = $request->input('concluido');
 
@@ -62,13 +62,13 @@ class EtapasController extends Controller
 
         $etapa->save();
 
-        return redirect()->route('etapa.index')->with('message', 'Criado com Sucesso!');
+        return redirect()->route('/etapas')->with('message', 'Criado com Sucesso!');
     }
 
     public function destroy($id){
 
         $etapa = Etapa::findOrFail($id);
         $etapa->delete();
-        return redirect()->route('exercicios/index')->with('//','Apagado com sucesso!');
+        return redirect()->route('/exercicios')->with('//','Apagado com sucesso!');
     }
 }

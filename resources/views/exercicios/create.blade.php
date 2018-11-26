@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{ Form::open(['action' => ['ExerciciosController@store', '$exercicio->id'], 'method' => 'POST'])}}
+    {!! Form::open(['action' => 'ExerciciosController@store', 'method' => 'POST']) !!}
 
     <div class="form-group">
         {{ Form::label('descricao', 'Descricao') }}
@@ -11,14 +11,15 @@
 
     <div class="form-group">
         {{ Form::label('etapa', 'Etapa') }}
-        {{ Form::text('etapa', '', ['class' => 'form-control']) }}
+        {{ Form::text('etapa_exercicio', '', ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('kit', 'Kit') }}
-        {{ Form::text('kit', '', ['class' => 'form-control']) }}
+        {{ Form::text('kit_exercicio', '', ['class' => 'form-control']) }}
     </div>
 
     {{ Form::submit('Criar exercicio!', ['class' => 'btn btn-primary']) }}
 
-    {{ Form::close() }}
+    {!! Form::close()  !!}
+@endsection

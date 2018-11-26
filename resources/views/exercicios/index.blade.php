@@ -3,10 +3,7 @@
 @section('content')
 
 <div class="container">
-
-
     <h1>Exercícios</h1>
-
     <table class="table"></table>
     @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -35,3 +32,4 @@
         </tbody>
     </table>
 </div>
+@endsection

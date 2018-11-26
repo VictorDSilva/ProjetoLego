@@ -1,31 +1,29 @@
-
 @extends('layouts.app')
 
 @section('content')
+    <main role="main" class="container">
+        <div class="jumbotron">
+            <h1>Editar Exercícios</h1>
+            {!! Form::open(['action' => ['ExerciciosController@update',$peca->id], 'method' => 'POST', 'enctype' =>'multipart/form-data']) !!}
+            <div class="form-group">
+                {{Form::label('Descricao', 'Descricao do exercicio')}}
+                {{Form::text('descricao', $exercicios->descricao, ['class' => 'form-control'])}}
+            </div>
 
+            <div class="form-group">
+                {{Form::label('Etapa', 'Etapa do exercicio')}}
+                {{Form::text('etapa_exercicio', $exercicios->descricao, ['class' => 'form-control'])}}
+            </div>
 
-    {{ Form::model($exercicio, array('ExerciciosController@edit' => array('exercicios.edit', $exercicio->id), 'method' => 'POST')) }}
+            <div class="form-group">
+                {{Form::label('Kit', 'Kit do exercicio')}}
+                {{Form::text('kit_exercicio', $exercicios->descricao, ['class' => 'form-control'])}}
+            </div>
 
-    {{ Form::open(}}
-
-    <div class="form-group">
-        {{ Form::label('descricao', 'Descricao') }}
-        {{ Form::text('descricao', $exercicio->descricao, array('class' => 'form-control')) }}
-    </div>
-
-    <div class="form-group">
-        {{ Form::label('etapa', 'Etapa') }}
-        {{ Form::text('etapa', $exercicio->etapa_exercicio, array('class' => 'form-control')) }}
-    </div>
-
-    <div class="form-group">
-        {{ Form::label('kit', 'Kit') }}
-        {{ Form::text('kit', $exercicio->kit_exercicio, array('class' => 'form-control'))}}
-    </div>
-
-    {{ Form::hidden('_method', 'PUT') }}
-    <div>
-    {{ Form::submit('Editar exercicio!', array('class' => 'btn btn-primary')) }}
-    </div>
-
-    {{ Form::close() }}
+            <div class="form-group">
+                {{Form::submit('Editar', ['class'=> 'btn btn-primary'])}}
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </main>
+@endsection

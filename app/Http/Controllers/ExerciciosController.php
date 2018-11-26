@@ -10,7 +10,7 @@ class ExerciciosController extends Controller
 {
     public function index(){
         $exercicios = Exercicio::all();
-        return view('exercicios.index/index')->with('exercicios', $exercicios);
+        return view('exercicios.index')->with('exercicios', $exercicios);
     }
 
     public function create(){
@@ -25,7 +25,7 @@ class ExerciciosController extends Controller
     public function edit($id){
 
         $exercicio = Exercicio::findOrFail($id);
-        return view('exercicios.edit/index')->with('exercicio', $exercicio);
+        return view('exercicios.edit')->with('exercicio', $exercicio);
     }
 
     public function update(Request $request, $id){
@@ -57,14 +57,13 @@ class ExerciciosController extends Controller
 
         $exercicio->save();
 
-        return redirect()->route('exercicios/index')->with('message', 'Criado com Sucesso!');
+        return redirect()->route('/exercicios')->with('message', 'Criado com Sucesso!');
     }
 
     public function destroy($id){
 
         $exercicios = exercicios::findOrFail($id);
         $exercicios->delete();
-        return redirect()->route('exercicios/index')->with('//','Apagado com sucesso!');
+        return redirect()->route('/exercicios')->with('//','Apagado com sucesso!');
     }
-
 }

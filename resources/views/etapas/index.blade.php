@@ -19,8 +19,6 @@
                 <td>Descrição</td>
                 <td>Peça</td>
                 <td>Audio</td>
-                <td></td>
-                <td></td>
             </tr>
             </thead>
             <tbody>
@@ -29,7 +27,7 @@
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->descricao }}</td>
                     <td>{{ $value->peca_etapa }}</td>
-                    <td><audio src="{{$value->audioPath}}"></audio></td>
+                    <td><audio src="{{$value->audio_path}}"></audio></td>
                     <td><a class="btn btn-small btn-success" href="{{ URL::to('etapas.edit' . $value->id) }}">Editar</a>
                     </td>
                 </tr>
@@ -37,3 +35,4 @@
             </tbody>
         </table>
     </div>
+@endsection

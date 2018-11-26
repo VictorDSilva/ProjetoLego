@@ -17,9 +17,9 @@ class CreateEtapasTable extends Migration
         Schema::create('etapas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao');
-            $table->string('audioPath');
-            $table->unsignedInteger('peca_id');
-            // $table->foreign('peca_id')->references('id')->on('pecas');
+            $table->string('audio_path');
+            $table->unsignedInteger('peca_etapa');
+            // $table->foreign('peca_etapa')->references('id')->on('pecas');
             $table->boolean('concluido');
 
             $table->timestamps();

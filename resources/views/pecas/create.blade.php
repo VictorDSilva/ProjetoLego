@@ -47,23 +47,6 @@
                 </tbody>
             </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div class="form-group">
                 <a class="btn btn-primary btn-danger"  href="{{ action('PecaController@index') }}">Cancelar</a>
                 <a class="btn btn-primary btn-success"  href="{{ action('PecaController@getPeca') }}">Incluir da API</a>

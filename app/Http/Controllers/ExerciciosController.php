@@ -44,7 +44,7 @@ class ExerciciosController extends Controller
         return redirect('/exercicios')->with('message', 'Alterado com sucesso');
     }
 
-    public function store(Resquest $request){
+    public function store(Request $request){
 
         $this->validate($request, [
             'descricao' => 'required',

@@ -47,11 +47,11 @@ class EtapasController extends Controller
         return redirect('/etapas')->with('message', 'Alterado com sucesso');
     }
 
-    public function store(Resquest $request){
+    public function store(Request $request){
 
         $this->validate($request, [
             'descricao' => 'required',
-            'audioPath' => 'required'
+
         ]);
 
         $etapa = new Etapa;

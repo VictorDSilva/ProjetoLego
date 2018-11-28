@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Sistema Lego</title>
     <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+
+
 </head>
 <body>
 @include('inc.navbar')
@@ -11,6 +13,7 @@
     @include('inc.messages')
     @yield('content')
 </div>
+
 <footer id="footer" class="text-center">
     <p></p>
 </footer>

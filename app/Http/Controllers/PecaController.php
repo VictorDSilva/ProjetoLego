@@ -25,7 +25,8 @@ class PecaController extends Controller
     {
 
         $kits = Kit::pluck('nome','id');
-        return view('pecas.create') ->with('kits',$kits);
+        $qnt = DB::table('Kits')->count();
+        return view('pecas.create',['kits' => $kits, 'qnt' => $qnt ]);
     }
 
 
@@ -148,7 +149,13 @@ class PecaController extends Controller
         $peca = new Peca();
         $peca->nome = $request->input('nome');
         $peca->id = $request->input('id');
-        $peca->url_imagem = $request->input('url_imagem');
+
+        if($request->input('url_imagem')== null){
+            $peca->url_imagem = 'null.png';
+        }else{
+            $peca->url_imagem = $request->input('url_imagem');
+        }
+
 
         $peca->save();
 

@@ -19,14 +19,50 @@
 
                 <img id="preview" alt="" width="100" height="100" class="rounded" />
             </div>
-            <div>
-            <div id="kits" class="form-group col-md-4">
+
+            {{--<div id="kits" class="form-group col-md-4">--}}
                 {{Form::label('Kit', 'Nome do kit')}}
 
-                {!! Form::select('kit',$kits,  null, ['class' => 'form-control']) !!}
-                {{--<button type="button" class="btn btn-primary  col-md-2 form-control">+</button>--}}
+                {{--{!! Form::select('kit1',$kits,  null, ['class' => 'form-control']) !!}--}}
 
-                </div>
+                {{--<button type="button" class="btn btn-primary  col-md-2 form-control " onclick="teste()">+</button>--}}
+                {{--</div>--}}
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody id="kits">
+                <tr >
+                    <td>
+                        {!! Form::select('kit1',$kits,  null, ['class' => 'form-control']) !!}
+                    </td>
+                    <td>
+                        <button id="addBtn" type="button" class="btn btn-primary  col-md-2 form-control " onclick="teste()">+</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <div class="form-group">
                 <a class="btn btn-primary btn-danger"  href="{{ action('PecaController@index') }}">Cancelar</a>
@@ -37,7 +73,34 @@
         </div>
 
         <script>
-           // var element4 = document.createElement("select");
+            var num = 1;
+            function teste(){
+            var kits = document.getElementById("kits");
+            var combobox = document.createElement('select');
+                num++;
+            {{--kits.innerHTML += '{!! Form::select('kit',$kits,  null, ['class' => 'form-control', 'id' => 'kitnovo']) !!}' ;--}}
+
+
+                                if( num <= {{$qnt}}){
+                kits.innerHTML +=
+                    " <tr ><td>"
+                    +'{!! Form::select('kit1',$kits,  null, ['class' => 'form-control', 'id' => 'kitnovo']) !!}'+
+                    "</td><td></td></tr>" ;
+                //kits.append(combobox);
+
+                document.getElementById('kitnovo').id = 'kit'+num;
+
+            }else{
+               document.getElementById('addBtn').classList.add('disable');
+            }
+
+
+
+
+
+
+            }
+
         </script>
 
     </main>

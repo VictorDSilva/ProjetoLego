@@ -19,18 +19,26 @@
 
                 <img id="preview" alt="" width="100" height="100" class="rounded" />
             </div>
-            <div class="form-group col-md-6">
+            <div>
+            <div id="kits" class="form-group col-md-4">
                 {{Form::label('Kit', 'Nome do kit')}}
 
-                {{--//----------------------------------------------------------}}
+                {!! Form::select('kit',$kits,  null, ['class' => 'form-control']) !!}
+                {{--<button type="button" class="btn btn-primary  col-md-2 form-control">+</button>--}}
+
                 </div>
 
             <div class="form-group">
+                <a class="btn btn-primary btn-danger"  href="{{ action('PecaController@index') }}">Cancelar</a>
                 <a class="btn btn-primary btn-success"  href="{{ action('PecaController@getPeca') }}">Incluir da API</a>
             {{Form::submit('Criar', ['class'=> 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}
         </div>
+
+        <script>
+           // var element4 = document.createElement("select");
+        </script>
 
     </main>
 

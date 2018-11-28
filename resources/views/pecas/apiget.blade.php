@@ -12,6 +12,7 @@
             </div>
 
             <div class="form-group">
+                <a class="btn btn-primary btn-warning"  href="{{ action('PecaController@create') }}">Voltar</a>
                 {{Form::submit('Verificar', ['class'=> 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}

@@ -24,8 +24,8 @@ class PecaController extends Controller
     public function create()
     {
 
-        //$kits = Kits::all(); ->with('kits',$kits)
-        return view('pecas.create');
+        $kits = Kit::pluck('nome','id');
+        return view('pecas.create') ->with('kits',$kits);
     }
 
 

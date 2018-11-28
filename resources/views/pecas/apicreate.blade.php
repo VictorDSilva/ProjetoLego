@@ -26,6 +26,7 @@
             </div>
 
             <div class="form-group">
+                <a class="btn btn-primary btn-danger"  href="{{ action('PecaController@index') }}">Cancelar</a>
                 {{Form::submit('Salvar', ['class'=> 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}

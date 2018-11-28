@@ -26,6 +26,7 @@
                 <img id="preview" alt="" width="100" height="100" class="rounded" />
             </div>
             <div class="form-group col-md-6">
+                <a class="btn btn-primary btn-danger"  href="{{ action('KitController@index') }}">Cancelar</a>
                 {{Form::submit('Criar', ['class'=> 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}

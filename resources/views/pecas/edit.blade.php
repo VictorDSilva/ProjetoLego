@@ -21,6 +21,7 @@
             </div>
             {{ Form::hidden('_method', 'PUT') }}
             <div class="form-group">
+                <a class="btn btn-primary btn-danger"  href="{{ action('PecaController@index') }}">Cancelar</a>
                 {{Form::submit('Editar', ['class'=> 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}

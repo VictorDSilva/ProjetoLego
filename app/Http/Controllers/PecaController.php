@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
 use App\Repositories\ImageRepository;
 use App\Peca;
@@ -33,6 +35,7 @@ class PecaController extends Controller
             'nome' => 'required',
             'url_imagem' => 'required'
         ]);
+
 
         $peca = Peca::create($request->except('url_imagem'));
         //$peca = new Peca();
@@ -98,16 +101,33 @@ class PecaController extends Controller
     public function showPeca(Request $request)
     {
         $id = $request->input('id');
-        $data = json_decode(file_get_contents("https://rebrickable.com/api/v3/lego/parts/".$id."/?key=".env("API_KEY")));
+
+        $client = new Client();
+        $res = $client->request('GET', "https://rebrickable.com/api/v3/lego/parts/".$id."/?key=".env("API_KEY"));
+
+        if($res->getStatusCode() != "200"){
+            return view('pecas.apiget')->with('success', 'Esta peça nao existe.');
+        }else{
+            $data=json_decode($res->getBody()->getContents());
+
+            $count = DB::table('Pecas')->where('id',$request->input('id'))->count();
+            if($count > 0){
+                return redirect('/pecas')->with('alert', 'Esta peça ja foi cadastrada.');
+            }
+
+
+            $peca = new Peca();
+            $peca->id = $data->part_num;
+            $peca->nome = $data->name;
+            $peca->url_imagem = $data->part_img_url;
+
+            return view('pecas.apicreate')->with('peca', $peca);
+        }
 
 
 
-        $peca = new Peca();
-        $peca->id = $data->part_num;
-        $peca->nome = $data->name;
-        $peca->url_imagem = $data->part_img_url;
 
-        return view('pecas.apicreate')->with('peca', $peca);
+
 
     }
 
@@ -124,16 +144,7 @@ class PecaController extends Controller
     {
 
 
-       // $data = json_decode(file_get_contents("https://rebrickable.com/api/v3/lego/parts/".$id."/?key=".env("API_KEY")));
-        //$peca = Peca::create($request->except('url_imagem'));
-        //$peca = new Peca();
-        //$peca->id = $data->part_num;
-        //$peca->nome = $data->name;
-       // $peca->url_imagem = $data->part_img_url;
 
-        //if ($request->hasFile('url_imagem')) {
-        //    $peca->url_imagem = $repo->saveImage($request->url_imagem, $peca->id, 'pecas', 250);
-        //}
         $peca = new Peca();
         $peca->nome = $request->input('nome');
         $peca->id = $request->input('id');
@@ -141,6 +152,6 @@ class PecaController extends Controller
 
         $peca->save();
 
-        return redirect('/pecas')->with('success', 'Criado com sucesso');
+        return redirect('/pecas')->with('success', 'Peça cadastrada com sucesso');
     }
 }

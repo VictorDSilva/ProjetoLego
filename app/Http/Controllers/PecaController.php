@@ -38,11 +38,11 @@ class PecaController extends Controller
         ]);
 
 
-        $peca = Peca::create($request->except('url_imagem', 'kit1'));
+        $peca = Peca::create($request->except('url_imagem', 'kit'));
         //$peca = new Peca();
         //$peca->nome = $request->input('nome');
         //$peca->url_imagem = $request->input('url_imagem');
-        var_dump($request->input( 'kit1'));
+        var_dump($request->input( 'kit'));
 
 //        if ($request->hasFile('url_imagem')) {
 //            $peca->url_imagem = $repo->saveImage($request->url_imagem, $peca->id, 'pecas', 250);

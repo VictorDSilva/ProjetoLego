@@ -38,7 +38,7 @@
                 <tbody id="kits">
                 <tr >
                     <td>
-                        {!! Form::select('kit1',$kits,  null, ['class' => 'form-control']) !!}
+                        {!! Form::select('kit[]',$kits,  null, ['class' => 'form-control', 'id' => 'kit1']) !!}
                     </td>
                     <td>
                         <button id="addBtn" type="button" class="btn btn-primary  col-md-2 form-control " onclick="teste()">+</button>
@@ -67,9 +67,11 @@
                                 if( num <= {{$qnt}}){
                 kits.innerHTML +=
                     " <tr ><td>"
-                    +'{!! Form::select('kit1',$kits,  null, ['class' => 'form-control', 'id' => 'kitnovo']) !!}'+
+                    +'{!! Form::select('kit[]',$kits,  null, ['class' => 'form-control', 'id' => 'kitnovo']) !!}'+
                     "</td><td></td></tr>" ;
                 //kits.append(combobox);
+
+
 
                 document.getElementById('kitnovo').id = 'kit'+num;
 

@@ -32,11 +32,7 @@ class KitController extends Controller
         ]);
 
 
-//        $kit = new Kit();
-//        $kit->nome = $request->input('nome');
-//        $kit->ano = $request->input('ano');
-//        $kit->quantidade_pecas = $request->input('quantidade_pecas');
-//        $kit->url_imagem = $request->input('url_imagem');
+
 
         $kit = Kit::create($request->except('url_imagem'));
         if ($request->hasFile('url_imagem')) {
@@ -58,7 +54,8 @@ class KitController extends Controller
     public function edit($id)
     {
         $kit =  Kit::Find($id);
-        return view('kits.edit')->with('kit', $kit);
+        $pecas = $kit->pecas;
+        return view('kits.edit', ['kit'=> $kit, 'pecas'=> $pecas]);
     }
 
 

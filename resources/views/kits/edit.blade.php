@@ -19,6 +19,30 @@
                 {{Form::label('Quantidade de peças', 'Quantidade de peças')}}
                 {{Form::text('quantidade_pecas', $kit->quantidade_pecas, ['class' => 'form-control'])}}
             </div>
+            <div class="form-group col-md-6" >
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Peça</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody id="kits">
+                    @if(count($pecas)> 0)
+                        @foreach($pecas as $peca)
+                            <tr>
+
+                                <td>{{$peca->nome}}</td>
+                                <td><img src="{{$peca->url_imagem}}" height="100" width="100" /></td>
+                            </tr>
+                        @endforeach
+
+                    @endif
+
+                    </tbody>
+                </table>
+            </div>
+
             <div class="form-group">
                 <label for="url_imagem">Imagem:</label>
                 {{Form::file('url_imagem',['onchange'=>"document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])"])}}

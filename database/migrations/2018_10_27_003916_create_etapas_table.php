@@ -18,12 +18,14 @@ class CreateEtapasTable extends Migration
             $table->increments('id');
             $table->string('descricao');
             $table->string('audio_path');
-            $table->unsignedInteger('peca_etapa');
             $table->boolean('concluido');
-
-
+            $table->boolean('webcam');
+            $table->integer('numero_etapa');
+            $table->integer('tentativas');
+            $table->unsignedInteger('etapa_exercicio');
+            $table->foreign('etapa_exercicio')->references('id')->on('etapas');
+            $table->unsignedInteger('peca_etapa')->default(null);
             $table->foreign('peca_etapa')->references('id')->on('pecas');
-
             $table->timestamps();
         });
     }

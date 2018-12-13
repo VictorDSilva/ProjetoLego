@@ -22,10 +22,11 @@ class CreateEtapasTable extends Migration
             $table->boolean('webcam');
             $table->integer('numero_etapa');
             $table->integer('tentativas');
+
+            //$table->unsignedInteger('peca_etapa')->default(null);
+            //$table->foreign('peca_etapa')->references('id')->on('pecas');
             $table->unsignedInteger('etapa_exercicio');
             $table->foreign('etapa_exercicio')->references('id')->on('etapas');
-            $table->unsignedInteger('peca_etapa')->default(null);
-            $table->foreign('peca_etapa')->references('id')->on('pecas');
             $table->timestamps();
         });
     }

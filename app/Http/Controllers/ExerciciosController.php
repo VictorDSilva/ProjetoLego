@@ -52,8 +52,8 @@ class ExerciciosController extends Controller
 
         $exercicio = new Exercicio;
         $exercicio->descricao  = $request->input('descricao');
-        $exercicio->etapa_exercicio  = $request->input('etapa_exercicio');
-        $exercicio->kit_exercicio = $request->input('kit_exercicio');
+        //$exercicio->etapa_exercicio  = $request->input('etapa_exercicio');
+        //$exercicio->kit_exercicio = $request->input('kit_exercicio');
 
         $exercicio->save();
 

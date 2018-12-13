@@ -14,6 +14,12 @@
             <li class="nav-item">
                 <a class="nav-link " href="{{ action('EtapasController@index') }}">Etapas</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ action('PecaController@index') }}">Peças</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{{ action('KitController@index') }}">Kits</a>
+            </li>
         </ul>
     </div>
 </nav>

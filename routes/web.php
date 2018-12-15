@@ -16,3 +16,10 @@ Route::get('/', function () {
 });
 Route::resource('etapa','EtapasController');
 Route::resource('exercicio','ExerciciosController');
+
+Route::resource('kits', 'KitController');
+Route::resource('pecas', 'PecaController');
+Route::get('/peca/api/', 'PecaController@getPeca');
+Route::post('/peca/api/show/', 'PecaController@showPeca');
+
+Route::post('/peca/api/{id}', 'PecaController@storeAPI');

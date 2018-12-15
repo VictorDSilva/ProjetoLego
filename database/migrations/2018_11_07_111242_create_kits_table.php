@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExerciciosTable extends Migration
+class CreateKitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateExerciciosTable extends Migration
      */
     public function up()
     {
-        Schema::create('exercicios', function (Blueprint $table) {
+        Schema::create('kits', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descricao');
-            $table->unsignedInteger('kit_exercicio');
-            $table->foreign('kit_exercicio')->references('id')->on('kit');
+            $table->string('nome');
+            $table->string('url_imagem')->default('null.jpg');
+            $table->integer('ano');
+            $table->integer('quantidade_pecas');
+
+
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateExerciciosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exercicios');
+        Schema::dropIfExists('kits');
     }
 }

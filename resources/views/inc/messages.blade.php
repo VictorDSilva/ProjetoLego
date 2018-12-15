@@ -11,3 +11,9 @@
         {{session('success')}}
     </div>
 @endif
+
+@if(session('alert'))
+    <div class="alert alert-primary">
+        {{session('alert')}}
+    </div>
+@endif

@@ -38,8 +38,8 @@ class PecaController extends Controller
         ]);
 
 
-        $peca = Peca::create($request->except('url_imagem', 'kit'));
-        $kits = $request->input('kit');
+        $peca = Peca::create($request->except('url_imagem', 'kits'));
+        $kits = $request->input('kits');
             foreach ($kits as $kit){
                 $peca->kits()->attach($kit);
                    }

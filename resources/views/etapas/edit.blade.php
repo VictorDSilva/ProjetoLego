@@ -13,9 +13,25 @@
                 {{Form::label('Peca', 'Peca da etapa')}}
                 {{Form::text('peca_etapa', $etapas->peca_etapa, ['class' => 'form-control'])}}
             </div>
+            <div class="form-group col-md-6">
+                {{ Form::label('numero_etapa', 'Ordenação etapa') }}
+                {{ Form::text('numero_etapa', '', ['class' => 'form-control']) }}
+            </div>
+            <div class="form-group col-md-6">
+                {{Form::checkbox('webcam', 'Webcam', false) }}
+                {{Form::label('webcam', 'Acesso a webcam') }}
+            </div>
+            <div class="form-group col-md-6">
+                {{Form::checkbox('concluido', 'concluido', false) }}
+                {{Form::label('concluido', 'Etapa concluida') }}
+            </div>
             <div class="form-group">
                 <label for="audio_path">Audio:</label>
                 {{Form::file('audio_path',['onchange'=>"document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])"])}}
+            </div>
+            <div class="form-group col-md-6">
+                {{ Form::label('tentativas', 'Número de tentativas') }}
+                {{ Form::text('tentativas', '', ['class' => 'form-control']) }}
             </div>
             <div class="form-group col-md-6">
                 <audio controls>

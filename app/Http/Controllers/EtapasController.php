@@ -30,45 +30,42 @@ class EtapasController extends Controller
 
     public function update(Request $request, $id){
 
-        $this->validate($request, [
+        $request->validate([
             'descricao' => 'required',
-            'audioPath' => 'required'
+            'numero_etapa' => 'required',
+            'webcam' => 'required',
+            'concluido' => 'required',
+            'audio_path'=> 'required',
+            'tentativas' => 'required'
         ]);
 
-        $etapa = Etapa::findOrFail($id);
-        $etapa->descricao = $request->input('descricao');
-        $etapa->audioPath = $request->input('audio_path');
-        $etapa->peca_etapa= $request->input('peca_etapa');
-        $etapa->concluido = $request->input('concluido');
+        Etapa::find($id)->update($request->all());
 
+        return redirect()->route('etapas.index')->with('message', 'Atualizado com Sucesso!');
 
-        $etapa->save();
-
-        return redirect('/etapas')->with('message', 'Alterado com sucesso');
     }
 
     public function store(Request $request){
 
-        $this->validate($request, [
+        $request->validate([
             'descricao' => 'required',
-
+            'numero_etapa' => 'required',
+            'webcam' => 'required',
+            'concluido' => 'required',
+            'audio_path'=> 'required',
+            'tentativas' => 'required'
         ]);
 
-        $etapa = new Etapa;
-        $etapa->descricao  = $request->input('descricao');
-        $etapa->audioPath  = $request->input('audio_path');
-        $etapa->peca_etapa  = $request->input('peca_etapa');
-        $etapa->concluido  = $request->input('concluido');
+        Etapa::create($request->all());
 
-        $etapa->save();
+        return redirect()->route('etapas.index')->with('message', 'Criado com Sucesso!');
 
-        return redirect()->route('/etapas')->with('message', 'Criado com Sucesso!');
     }
 
     public function destroy($id){
 
         $etapa = Etapa::findOrFail($id);
         $etapa->delete();
-        return redirect()->route('/exercicios')->with('//','Apagado com sucesso!');
+        return redirect()->route('/etapa')->with('//','Apagado com sucesso!');
     }
 }

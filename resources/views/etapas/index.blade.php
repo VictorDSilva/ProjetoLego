@@ -1,38 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div class="container">
-
-
-        <h1>Etapas</h1>
-
-        <table class="table"></table>
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
-
-        <table class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                <td>ID</td>
-                <td>Descrição</td>
-                <td>Peça</td>
-                <td>Audio</td>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($etapas as $etapa => $value)
+    <main role="main" class="container">
+        <div class="jumbotron">
+            <h1>Etapas</h1>
+            <table class="table">
+                <thead>
+                <a class="btn btn-primary btn-success float-right" href="etapa/create">Incluir</a>
                 <tr>
-                    <td>{{ $value->id }}</td>
-                    <td>{{ $value->descricao }}</td>
-                    <td>{{ $value->peca_etapa }}</td>
-                    <td><audio src="{{$value->audio_path}}"></audio></td>
-                    <td><a class="btn btn-small btn-success" href="{{ URL::to('etapas.edit' . $value->id) }}">Editar</a>
-                    </td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Peça Etapa</th>
+                    <th scope="col">Número Etapa</th>
+                    <th scope="col">Webcam</th>
+                    <th scope="col">Concluído</th>
+                    <th scope="col">Áudio</th>
+                    <th scope="col">Tentativas</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                @if(count($etapas)> 0)
+                    @foreach($etapas as $etapa)
+                        <tr>
+                            <td>{{$etapa->id}}</td>
+                            <td>{{$etapa->descricao}}</td>
+                            <td>{{$etapa->peca_etapa}}</td>
+                            <td>{{$etapa->numero_etapa}}</td>
+                            <td>{{$etapa->webcam}}</td>
+                            <td>{{$etapa->concluido}}</td>
+                            <td><audio src="{{$etapa->audio_path}}"/></td>
+                            <td>{{$etapa->concluido}}</td>
+                            <td> <a class="btn-sm btn-primary btn-warning float-right"  href="{{route('etapa.edit', $etapa->id)}}">Editar</a>
+
+                            </td>
+                            <td>{!!Form::open(['action' => ['EtapasController@destroy', $kit->id],'method' => 'POST', 'class' => 'float-left', 'onsubmit' => 'return confirm("Você tem certeza?")'])!!}
+                                {{Form::hidden('_method', 'DELETE')}}
+                                {{Form::submit('Deletar', ['class' => 'btn btn-danger btn-sm '])}}
+                                {!! Form::close() !!}</td>
+                        </tr>
+                    @endforeach
+                @endif
+                </tbody>
+            </table>
+        </div>
+    </main>
+
 @endsection

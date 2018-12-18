@@ -16,8 +16,8 @@ class CreateExerciciosTable extends Migration
         Schema::create('exercicios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao');
-            $table->unsignedInteger('kit_exercicio');
-            $table->foreign('kit_exercicio')->references('id')->on('kit');
+            //$table->unsignedInteger('kit_exercicio');
+            //$table->foreign('kit_exercicio')->references('id')->on('kit');
             $table->timestamps();
         });
     }

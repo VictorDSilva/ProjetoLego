@@ -63,8 +63,7 @@
                 num++;
             {{--kits.innerHTML += '{!! Form::select('kit',$kits,  null, ['class' => 'form-control', 'id' => 'kitnovo']) !!}' ;--}}
 
-
-                                if( num <= {{$qnt}}){
+            if( num <= {{$qnt}}){
                 kits.innerHTML +=
                     " <tr ><td>"
                     +'{!! Form::select('kit[]',$kits,  null, ['class' => 'form-control', 'id' => 'kitnovo']) !!}'+

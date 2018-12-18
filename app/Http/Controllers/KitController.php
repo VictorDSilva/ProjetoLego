@@ -31,9 +31,6 @@ class KitController extends Controller
             //'url_imagem' => 'required'
         ]);
 
-
-
-
         $kit = Kit::create($request->except('url_imagem'));
         if ($request->hasFile('url_imagem')) {
             $kit->url_imagem = $repo->saveImage($request->url_imagem, $kit->id, 'kits', 250);

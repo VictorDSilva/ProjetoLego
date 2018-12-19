@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <main role="main" class="container">
+        <div class="jumbotron">
     {!! Form::open(['action' => 'EtapasController@store', 'method' => 'POST']) !!}
 
     <div class="form-group col-md-6">
@@ -29,4 +30,6 @@
     {{ Form::submit('Criar etapa!', ['class' => 'btn btn-primary']) }}
 
     {!! Form::close()  !!}
+        </div>
+    </main>
 @endsection

@@ -2,14 +2,15 @@
 
 @section('content')
 
-<div class="container">
+    <main role="main" class="container">
+        <div class="jumbotron">
     <h1>Exercícios</h1>
     <table class="table"></table>
     @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <table class="table table-striped table-bordered">
+    <table class="table">
         <thead>
         <tr>
             <td>ID</td>
@@ -31,5 +32,6 @@
         @endforeach
         </tbody>
     </table>
-</div>
+        </div>
+    </main>
 @endsection

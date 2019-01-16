@@ -3,7 +3,7 @@
 @section('content')
     <main role="main" class="container">
         <div class="jumbotron">
-    {!! Form::open(['action' => 'EtapasController@store', 'method' => 'POST']) !!}
+    {!! Form::open(['action' => 'EtapaController', 'method' => 'POST']) !!}
 
     <div class="form-group col-md-6">
         {{ Form::label('descricao', 'Descricao') }}

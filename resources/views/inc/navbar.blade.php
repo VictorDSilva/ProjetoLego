@@ -6,13 +6,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ action('ExerciciosController@index') }}">Home </a>
+                <a class="nav-link" href="{{ action('ExercicioController@index') }}">Home </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ action('ExerciciosController@index') }}">Exercícios</a>
+                <a class="nav-link" href="{{ action('ExercicioController@index') }}">Exercícios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="{{ action('EtapasController@index') }}">Etapas</a>
+                <a class="nav-link " href="{{ action('EtapaController@index') }}">Etapas</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ action('PecaController@index') }}">Peças</a>

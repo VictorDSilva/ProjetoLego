@@ -12,22 +12,27 @@
 
     <table class="table">
         <thead>
+        <a class="btn btn-primary btn-success float-right" href="exercicios/create">Incluir</a>
         <tr>
-            <td>ID</td>
-            <td>Descrição</td>
-            <td>Etapa</td>
-            <td>Kit</td>
+            <th scope="col">id</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Kit</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        @foreach($exercicios as $exercicio => $value)
+        @foreach($exercicios as $exercicio)
             <tr>
-                <td>{{ $value->id }}</td>
-                <td>{{ $value->descricao }}</td>
-                <td>{{ $value->etapa_exercicio }}</td>
-                <td>{{ $value->exercicio_exercicio }}</td>
-                <td><a class="btn btn-small btn-success" href="{{ URL::to('exercicios.edit' . $value->id) }}">Editar</a>
+                <td>{{ $exercicio->id }}</td>
+                <td>{{ $exercicio->descricao }}</td>
+                <td>{{ $exercicio->exercicio_exercicio }}</td>
+                <td><a class="btn btn-sm  btn-warning float-right"  href="{{route('exercicios.edit', $exercicio->id)}}">Editar</a>
                 </td>
+                <td>{!!Form::open(['action' => ['ExercicioController@destroy', $exercicio->id],'method' => 'POST', 'class' => 'float-left', 'onsubmit' => 'return confirm("Você tem certeza?")'])!!}
+                    {{Form::hidden('_method', 'DELETE')}}
+                    {{Form::submit('Deletar', ['class' => 'btn btn-danger btn-sm '])}}
+                    {!! Form::close() !!}</td>
             </tr>
         @endforeach
         </tbody>

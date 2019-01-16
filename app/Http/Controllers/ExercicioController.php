@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Exercicio;
 
-class ExerciciosController extends Controller
+class ExercicioController extends Controller
 {
     public function index(){
         $exercicios = Exercicio::all();
@@ -15,7 +15,7 @@ class ExerciciosController extends Controller
 
     public function create(){
 
-      return view('exercicios.create');
+        return view('exercicios.create');
     }
 
     public function show(){

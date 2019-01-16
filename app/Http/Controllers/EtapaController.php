@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Etapa;
 
-class EtapasController extends Controller
+class EtapaController extends Controller
 {
     public function index(){
         $etapas = Etapa::all();

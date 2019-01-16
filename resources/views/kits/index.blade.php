@@ -26,7 +26,7 @@
                             <td>{{$kit->ano}}</td>
                             <td>{{$kit->quantidade_pecas}}</td>
                             <td><img src="{{$kit->url_imagem}}"  /></td>
-                            <td> <a class="btn-sm  btn-warning float-right"  href="{{route('kits.edit', $kit->id)}}">Editar</a>
+                            <td> <a class="btn btn-sm  btn-warning float-right"  href="{{route('kits.edit', $kit->id)}}">Editar</a>
 
                             </td>
                             <td>{!!Form::open(['action' => ['KitController@destroy', $kit->id],'method' => 'POST', 'class' => 'float-left', 'onsubmit' => 'return confirm("Você tem certeza?")'])!!}

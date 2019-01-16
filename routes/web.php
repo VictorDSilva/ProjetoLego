@@ -14,8 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('etapa','EtapasController');
-Route::resource('exercicio','ExerciciosController');
+Route::resource('etapas','EtapaController');
+Route::resource('exercicios','ExercicioController');
 
 Route::resource('kits', 'KitController');
 Route::resource('pecas', 'PecaController');

@@ -22,7 +22,7 @@
                     <td>{{$peca->id}}</td>
                     <td>{{$peca->nome}}</td>
                     <td><img src="{{$peca->url_imagem}}" height="100" width="100" /></td>
-                    <td> <a class="btn-sm  btn-warning float-right"  href="{{route('pecas.edit', $peca->id)}}">Editar</a>
+                    <td> <a class="btn btn-sm  btn-warning float-right"  href="{{route('pecas.edit', $peca->id)}}">Editar</a>
 
                     </td>
                     <td>{!!Form::open(['action' => ['PecaController@destroy', $peca->id],'method' => 'POST', 'class' => 'float-left', 'onsubmit' => 'return confirm("Você tem certeza?")'])!!}

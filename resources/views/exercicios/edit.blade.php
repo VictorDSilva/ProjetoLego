@@ -4,7 +4,7 @@
     <main role="main" class="container">
         <div class="jumbotron">
             <h1>Editar Exercícios</h1>
-            {!! Form::open(['action' => ['ExerciciosController@update',$peca->id], 'method' => 'POST', 'enctype' =>'multipart/form-data']) !!}
+            {!! Form::open(['action' => ['ExercicioController@update',$peca->id], 'method' => 'POST', 'enctype' =>'multipart/form-data']) !!}
             <div class="form-group">
                 {{Form::label('Descricao', 'Descricao do exercicio')}}
                 {{Form::text('descricao', $exercicios->descricao, ['class' => 'form-control'])}}

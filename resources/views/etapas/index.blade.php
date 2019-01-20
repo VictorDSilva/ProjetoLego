@@ -2,9 +2,7 @@
 
 @section('content')
 
-    <main role="main" class="container">
 
-        <div class="jumbotron">
         <h1>Etapas</h1>
 
         <table class="table"></table>
@@ -41,6 +39,5 @@
             @endforeach
             </tbody>
         </table>
-        </div>
-    </main>
+
 @endsection

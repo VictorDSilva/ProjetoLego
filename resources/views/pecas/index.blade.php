@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <main role="main" class="container">
-        <div class="jumbotron">
             <h1>Peças</h1>
             <table class="table">
                 <thead>
@@ -36,7 +34,6 @@
             @endif
                 </tbody>
             </table>
-        </div>
-    </main>
+
 
 @endsection

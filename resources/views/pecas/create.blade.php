@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <main role="main" class="container">
 
-        <div class="jumbotron">
             <h1>Criar Peça</h1>
 
             {!! Form::open(['action' => 'PecaController@store', 'method' => 'POST', 'enctype' =>'multipart/form-data']) !!}
@@ -32,13 +30,6 @@
             {{Form::submit('Criar', ['class'=> 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}
-        </div>
 
-
-
-
-
-
-    </main>
 
 @endsection

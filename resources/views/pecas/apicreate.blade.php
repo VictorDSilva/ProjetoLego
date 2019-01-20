@@ -3,8 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <main role="main" class="container">
-        <div class="jumbotron">
+
             <h1>Salvar Peça</h1>
             {!! Form::open(['action' => ['PecaController@storeAPI', $peca->id], 'method' => 'POST']) !!}
             <div class="form-group col-md-6">
@@ -30,6 +29,5 @@
                 {{Form::submit('Salvar', ['class'=> 'btn btn-primary'])}}
             </div>
             {!! Form::close() !!}
-        </div>
-    </main>
+
 @endsection

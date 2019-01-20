@@ -23,3 +23,7 @@ Route::get('/peca/api/', 'PecaController@getPeca');
 Route::post('/peca/api/show/', 'PecaController@showPeca');
 
 Route::post('/peca/api/{id}', 'PecaController@storeAPI');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

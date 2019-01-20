@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <main role="main" class="container">
-        <div class="jumbotron">
+
     <h1>Exercícios</h1>
     <table class="table"></table>
     @if (Session::has('message'))
@@ -37,6 +36,5 @@
         @endforeach
         </tbody>
     </table>
-        </div>
-    </main>
+
 @endsection
